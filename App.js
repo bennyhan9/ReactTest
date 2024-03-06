@@ -6,22 +6,23 @@
  */
 
 import React from 'react';
-
+import { Provider } from 'react-redux';
 import {StatusBar, StyleSheet, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CategoriesScreen from './src/screens/CategoriesScreen';
 import MealOverviewScreen from './src/screens/MealOverviewScreen';
 import MealDetailsScreen from './src/screens/MealDetailsScreen';
-import FavoritesContextProvider from './src/store/context/favorites-context';
+//import FavoritesContextProvider from './src/store/context/favorites-context';
 import FavoritesScreen from './src/screens/FavoritesScreen';
+import {store} from './src/store/redux/store';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
-    <>
+    <Provider store={store}>
       <StatusBar barStyle="dark-content" />
-      <FavoritesContextProvider>
+      {/*<FavoritesContextProvider>*/}
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="MealsCategories"
@@ -59,8 +60,8 @@ const App = () => {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </FavoritesContextProvider>
-    </>
+      {/*</FavoritesContextProvider>*/}
+    </Provider>
   );
 };
 
