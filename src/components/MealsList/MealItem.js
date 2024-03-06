@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Pressable, StyleSheet, Image, Platform} from 'react-native';
-import MealDetail from './MealDetails';
+import MealDetail from '../MealDetails';
 
 const MealItem = props => {
   const {id, title, imageUrl, affordability, complexity, duration, onPress} = props;

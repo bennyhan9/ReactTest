@@ -1,29 +1,31 @@
-import React, {useLayoutEffect, useState} from 'react';
-import {View, Text, Image, Button, StyleSheet, ScrollView} from 'react-native';
+import React, {useLayoutEffect, useContext} from 'react';
+import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
 import {MEALS} from '../data/dummy-data';
 import MealDetail from '../components/MealDetails';
 import Subtitle from '../components/MealDetail/Subtitle';
 import List from '../components/MealDetail/List';
 import IconButton from '../components/IconButton';
+import {FavoritesContext} from '../store/context/favorites-context';
 const addFav = require('../assets/icons/add_favorite.png');
 const fav = require('../assets/icons/favorite.png');
 
 const MealDetailsScreen = props => {
+  const favoriteMealsCtx = useContext(FavoritesContext)
   const {navigation, route} = props;
-  const [addedToFav, setAddedToFav] = useState(false);
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
+  const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
   const mealDetails = {
     affordability: selectedMeal.affordability,
     complexity: selectedMeal.complexity,
     duration: selectedMeal.duration,
   };
 
-  const headerButtonPressHandler = () => {
-    if (addedToFav) {
-      setAddedToFav(false);
+  const changeFavoriteStatusHandler = () => {
+    if (mealIsFavorite) {
+      favoriteMealsCtx.removeFavorite(mealId)
     } else {
-      setAddedToFav(true);
+      favoriteMealsCtx.addFavorite(mealId)
     }
   };
 
@@ -32,21 +34,19 @@ const MealDetailsScreen = props => {
     navigation.setOptions({
       title: displayedMealId,
       headerRight: () => {
+        return (
         <IconButton
-          imgSrc={addedToFav ? fav : addFav}
-          onPress={headerButtonPressHandler}
-        />;
+          imgSrc={mealIsFavorite ? fav : addFav}
+          onPress={changeFavoriteStatusHandler}
+        />
+        );
       },
     });
-  }, [mealId, navigation]);
+  }, [mealId, navigation, changeFavoriteStatusHandler]);
 
   return (
     <ScrollView style={styles.mealDetailcContainer}>
       <Image source={{uri: selectedMeal.imageUrl}} style={styles.image} />
-      <IconButton
-        imgSrc={addedToFav ? fav : addFav}
-        onPress={headerButtonPressHandler}
-      />
       <Text style={styles.title}>{selectedMeal.title}</Text>
       <MealDetail {...mealDetails} />
       <View style={styles.listOuterContainer}>

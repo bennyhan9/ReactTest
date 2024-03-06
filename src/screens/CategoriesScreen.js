@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import {Button, FlatList} from 'react-native';
 import {CATEGORIES} from '../data/dummy-data';
 import CategoryGridTiles from '../components/CategoryGridTiles';
 
@@ -15,7 +15,13 @@ const CategoriesScreen = props => {
     );
   };
 
+  const handleNavToFav = () => {
+    navigation.navigate('FavoritesScreen');
+  };
+
   return (
+    <>
+    <Button title='Favorites' onPress={handleNavToFav} />
     <FlatList
       data={CATEGORIES}
       showsVerticalScrollIndicator={false}
@@ -23,6 +29,7 @@ const CategoriesScreen = props => {
       renderItem={renderCategoryItem}
       numColumns={2}
     />
+    </>
   );
 };
 
