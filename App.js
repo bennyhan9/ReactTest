@@ -7,64 +7,61 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import {StatusBar, StyleSheet, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import CategoriesScreen from './src/screens/CategoriesScreen';
-import MealOverviewScreen from './src/screens/MealOverviewScreen';
-import MealDetailsScreen from './src/screens/MealDetailsScreen';
-//import FavoritesContextProvider from './src/store/context/favorites-context';
-import FavoritesScreen from './src/screens/FavoritesScreen';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import MainScreen from './src/screens/MainScreen';
+import RecipesScreen from './src/screens/RecipesScreen';
 import {store} from './src/store/redux/store';
+import HomeSvg from './src/assets/icons/home.svg';
+import RecipeSvg from './src/assets/icons/recipe.svg';
 
-const Stack = createNativeStackNavigator();
-const App = () => {
+const BottomTabs = createBottomTabNavigator();
+
+const BottomNavigator = () => {
   return (
-    <Provider store={store}>
-      <StatusBar barStyle="dark-content" />
-      {/*<FavoritesContextProvider>*/}
-        <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName="MealsCategories"
-            screenOptions={{
-              title: 'Meal Categories',
-              headerStyle: {backgroundColor: '#e5e5e5'},
-            }}>
-            <Stack.Screen
-              name="MealsCategories"
-              component={CategoriesScreen}
-              options={{
-                title: 'Meal Categories',
-              }}
-            />
-            <Stack.Screen
-              name="MealsOverview"
-              component={MealOverviewScreen}
-              options={{
-                title: 'Meal Overview',
-              }}
-            />
-            <Stack.Screen
-              name="MealDetailsScreen"
-              component={MealDetailsScreen}
-              options={{
-                title: 'Meal Detail',
-              }}
-            />
-            <Stack.Screen
-              name="FavoritesScreen"
-              component={FavoritesScreen}
-              options={{
-                title: 'Favorites',
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      {/*</FavoritesContextProvider>*/}
-    </Provider>
+    <BottomTabs.Navigator
+      screenOptions={({navigation}) => ({
+        headerStyle: {backgroundColor: '#b6b6b6'},
+        navigation: {navigation},
+        headerTintColor: 'white',
+        tabBarLabelStyle: {fontSize: 14, fontWeight: 500},
+        tabBarStyle: {backgroundColor: '#dadada', paddingTop: 6},
+        tabBarActiveTintColor: '#08a545',
+      })}>
+      <BottomTabs.Screen
+        name="Home"
+        component={MainScreen}
+        options={{
+          title: 'Home',
+          tabBarLabel: 'Home',
+          tabBarIcon: ({color}) => (
+            <HomeSvg width={24} height={24} style={{color: color}} />
+          ),
+        }}
+      />
+      <BottomTabs.Screen
+        name="Recipe"
+        component={RecipesScreen}
+        options={{
+          title: 'Recipe',
+          tabBarLabel: 'Recipe',
+          tabBarIcon: ({color}) => (
+            <RecipeSvg width={24} height={24} style={{color: color}} />
+          ),
+        }}
+      />
+    </BottomTabs.Navigator>
   );
 };
 
-const styles = StyleSheet.create({});
+const App = () => {
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <BottomNavigator />
+      </NavigationContainer>
+    </Provider>
+  );
+};
 
 export default App;

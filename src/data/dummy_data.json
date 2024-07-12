@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Cheese Berry Cake",
+    "imageUri": "https://cdn.pixabay.com/photo/2023/03/26/19/38/cheese-cake-7878989_1280.jpg",
+    "duration": 60,
+    "ingredients": ["Cheese", "Berry", "Flour", "Sugar", "Eggs"],
+    "steps": [
+      "Preheat oven to 350°F (175°C).",
+      "Mix all ingredients in a bowl until smooth.",
+      "Pour batter into greased cake pans.",
+      "Bake for 40-45 minutes or until golden brown.",
+      "Let cool completely before serving."
+    ]
+  },
+  { 
+    "id": 2,
+    "title": "Apple Pie",
+    "imageUri": "https://cdn.pixabay.com/photo/2018/09/12/11/35/apple-pie-3671925_960_720.png",
+    "duration": 45,
+    "ingredients": ["Apples", "Sugar", "Flour", "Butter", "Cinnamon"],
+    "steps": [
+      "Preheat oven to 375°F (190°C).",
+      "Peel and slice apples, then mix with sugar and cinnamon.",
+      "Line pie dish with pastry, add apple mixture, and cover with top pastry.",
+      "Bake for 30-35 minutes or until crust is golden brown.",
+      "Let cool slightly before serving."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Chocolate Cupcake",
+    "imageUri": "https://cdn.pixabay.com/photo/2021/09/17/14/04/cupcake-6632858_1280.png",
+    "duration": 30,
+    "ingredients": ["Flour","Sugar", "Cocoa Powder", "Eggs", "Milk"],
+    "steps": [
+      "Preheat oven to 350°F (175°C).",
+      "Mix dry ingredients in a bowl, then add wet ingredients and mix until smooth.",
+      "Pour batter into lined cupcake trays.",
+      "Bake for 18-20 minutes or until toothpick comes out clean.",
+      "Let cool completely before frosting."
+    ]
+  }
+]

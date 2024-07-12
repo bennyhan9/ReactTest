@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import FavoritesReducer from "../reducers/favoriteReducer";
+import RecipesReducer from "../reducers/recipesReducer";
 
 export default combineReducers({
-    FavoritesReducer,
+    RecipesReducer,
 })
